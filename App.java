@@ -1,0 +1,184 @@
+class Pessoa {
+//Nayra Monise Silva Sá* */
+
+    String nome;
+    int idade;
+
+    Pessoa() {
+        nome = "Não informado";
+        idade = 0;
+    }
+
+    Pessoa(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    void apresentar() {
+        System.out.println("Olá, meu nome é " + nome + " e tenho " + idade + " anos.");
+    }
+}
+
+class Carro {
+    String marca;
+    String modelo;
+    int ano;
+
+    Carro(String marca, String modelo, int ano) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+    }
+
+    void exibirInformacoes() {
+        System.out.println("Marca: " + marca);
+        System.out.println("Modelo: " + modelo);
+        System.out.println("Ano: " + ano);
+    }
+}
+
+class Produto {
+    String nome;
+    double preco;
+    int quantidade;
+
+    Produto(String nome, double preco, int quantidade) {
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidade = quantidade;
+    }
+
+    Produto(String nome, double preco) {
+        this.nome = nome;
+        this.preco = preco;
+        this.quantidade = 0;
+    }
+
+    double calcularValorTotal() {
+        return preco * quantidade;
+    }
+}
+
+class Aluno {
+    String nome;
+    double nota1;
+    double nota2;
+
+    Aluno(String nome) {
+        this.nome = nome;
+        this.nota1 = 0;
+        this.nota2 = 0;
+    }
+
+    Aluno(String nome, double nota1, double nota2) {
+        this.nome = nome;
+        this.nota1 = nota1;
+        this.nota2 = nota2;
+    }
+
+    double media() {
+        return (nota1 + nota2) / 2;
+    }
+}
+
+class Funcionario {
+    String nome;
+    double salarioMensal;
+
+    Funcionario(String nome, double salarioMensal) {
+        this.nome = nome;
+        this.salarioMensal = salarioMensal;
+    }
+
+    double salarioAnual() {
+        return salarioMensal * 12;
+    }
+
+    void aumentarSalario(double percentual) {
+        salarioMensal += salarioMensal * percentual / 100;
+    }
+}
+
+class ContaBancaria {
+    String numeroConta;
+    double saldo;
+
+    ContaBancaria(String numeroConta) {
+        this.numeroConta = numeroConta;
+        this.saldo = 0;
+    }
+
+    ContaBancaria(String numeroConta, double saldoInicial) {
+        this.numeroConta = numeroConta;
+        this.saldo = saldoInicial;
+    }
+
+    void depositar(double valor) {
+        saldo += valor;
+    }
+
+    void sacar(double valor) {
+        if (valor <= saldo) {
+            saldo -= valor;
+        } else {
+            System.out.println("Saldo insuficiente!");
+        }
+    }
+
+    void exibirSaldo() {
+        System.out.println("Saldo atual: R$ " + saldo);
+    }
+}
+
+public class App {
+    public static void main(String[] args) {
+
+        System.out.println("PARTE 1 - PESSOA");
+        Pessoa p1 = new Pessoa();
+        Pessoa p2 = new Pessoa("Nayra", 18);
+
+        p1.apresentar();
+        p2.apresentar();
+
+        System.out.println("\n= PARTE 1 - CARRO");
+        Carro carro = new Carro("Fiat", "Toro", 2023);//);
+        carro.exibirInformacoes();
+
+        System.out.println("\n= PARTE 2 - PRODUTO");
+        Produto prod1 = new Produto("Caderno", 20.0, 5);
+        Produto prod2 = new Produto("Caneta", 2.5);
+
+        System.out.println("Valor total do produto 1: R$ " + prod1.calcularValorTotal());
+        System.out.println("Valor total do produto 2: R$ " + prod2.calcularValorTotal());
+
+        System.out.println("\n= PARTE 2 - ALUNO");
+        Aluno a1 = new Aluno("João");
+        Aluno a2 = new Aluno("Maria", 8.5, 9.0);
+
+        System.out.println("Média de " + a1.nome + ": " + a1.media());
+        System.out.println("Média de " + a2.nome + ": " + a2.media());
+
+        System.out.println("\n= PARTE 3 - FUNCIONÁRIO");
+        Funcionario f1 = new Funcionario("Carlos", 2500);
+
+        System.out.println("Salário anual: R$ " + f1.salarioAnual());
+
+        f1.aumentarSalario(10);
+
+        System.out.println("Novo salário mensal: R$ " + f1.salarioMensal);
+        System.out.println("Novo salário anual: R$ " + f1.salarioAnual());
+
+        System.out.println("\n= PARTE 3 - CONTA BANCÁRIA");
+        ContaBancaria conta = new ContaBancaria("12345-6", 1000);
+
+        conta.exibirSaldo();
+
+        conta.depositar(500);
+        conta.exibirSaldo();
+
+        conta.sacar(300);
+        conta.exibirSaldo();
+
+        conta.sacar(2000);
+    }
+}
